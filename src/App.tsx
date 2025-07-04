@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Main App component
 const App = () => {
@@ -158,9 +158,7 @@ const App = () => {
       timeZones.forEach(zone => {
         // Get the hour in the current time zone
         const hourInZone = parseInt(now.toLocaleString('en-US', { hour: 'numeric', hour12: false, timeZone: zone.id }), 10);
-        // Get the minute in the current time zone
-        const minuteInZone = parseInt(now.toLocaleString('en-US', { minute: 'numeric', timeZone: zone.id }), 10);
-
+ 
         // Check if the hour is 17 (5 PM) and minutes are 0 (exactly on the hour)
         // We check for minutes to be 0 for exact 5:00 PM. If you want to show it for the whole 5 PM hour (e.g., 5:01 PM, 5:30 PM), remove `&& minuteInZone === 0`.
         if (hourInZone === 17) {
