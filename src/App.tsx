@@ -86,7 +86,7 @@ const App = () => {
       // Sluggish movement - interpolate between current and target position
       currentX += (targetX - currentX) * 0.1; // Adjust this value for more/less sluggishness
       currentY += (targetY - currentY) * 0.1;
-      
+
       setCursorPosition({ x: currentX, y: currentY });
       animationFrameId = requestAnimationFrame(updateCursor);
     };
@@ -158,7 +158,7 @@ const App = () => {
       timeZones.forEach(zone => {
         // Get the hour in the current time zone
         const hourInZone = parseInt(now.toLocaleString('en-US', { hour: 'numeric', hour12: false, timeZone: zone.id }), 10);
- 
+
         // Check if the hour is 17 (5 PM) and minutes are 0 (exactly on the hour)
         // We check for minutes to be 0 for exact 5:00 PM. If you want to show it for the whole 5 PM hour (e.g., 5:01 PM, 5:30 PM), remove `&& minuteInZone === 0`.
         if (hourInZone === 17) {
@@ -183,11 +183,10 @@ const App = () => {
   };
 
   return (
-    <div className={`min-h-screen w-full font-sans relative transition-colors duration-200 ${
-      isDarkMode 
-        ? 'bg-gray-900 text-white' 
-        : 'bg-white text-gray-900'
-    }`}>
+    <div className={`min-h-screen w-full font-sans relative transition-colors duration-200 ${isDarkMode
+      ? 'bg-gray-900 text-white'
+      : 'bg-white text-gray-900'
+      }`}>
       {/* Custom Cursor */}
       <div
         ref={cursorRef}
@@ -202,16 +201,15 @@ const App = () => {
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className={`rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 text-center ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
-               style={{backdropFilter: 'blur(8px)'}}>
+            style={{ backdropFilter: 'blur(8px)' }}>
             <h2 className="text-2xl font-bold mb-4">Welcome!</h2>
-            <p className="mb-6 text-base">Jimmy Buffet often said that "It's 5 o'clock somewhere." In his spirit, this site shows you where in the world it is currently around 5:00 PM.<br/></p>
+            <p className="mb-6 text-base">Jimmy Buffet often said that "It's 5 o'clock somewhere." In his spirit, this site shows you where in the world it is currently around 5:00 PM.<br /></p>
             <button
               onClick={() => setShowPopup(false)}
-              className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-200 ${
-                isDarkMode
-                  ? 'bg-blue-600 text-white hover:bg-blue-500'
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
+              className={`px-6 py-2 rounded-lg font-semibold transition-colors duration-200 ${isDarkMode
+                ? 'bg-blue-600 text-white hover:bg-blue-500'
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+                }`}
             >
               Close
             </button>
@@ -222,9 +220,8 @@ const App = () => {
       <div className="max-w-4xl mx-auto px-4 py-4 sm:py-8">
         {/* Header */}
         <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-          <h1 className={`text-lg sm:text-xl font-light ${
-            isDarkMode ? 'text-white' : 'text-gray-900'
-          }`}>
+          <h1 className={`text-lg sm:text-xl font-light ${isDarkMode ? 'text-white' : 'text-gray-900'
+            }`}>
             Where is it 5:00 PM?
           </h1>
         </div>
@@ -234,11 +231,10 @@ const App = () => {
           {/* 24/12 Hour Toggle */}
           <button
             onClick={handleTimeFormatToggle}
-            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors duration-200 ${
-              isDarkMode
-                ? 'bg-gray-700 text-white hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors duration-200 ${isDarkMode
+              ? 'bg-gray-700 text-white hover:bg-gray-600'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
           >
             {is24Hour ? '24H' : '12H'}
           </button>
@@ -246,11 +242,10 @@ const App = () => {
           {/* Dark Mode Toggle */}
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors duration-200 ${
-              isDarkMode
-                ? 'bg-gray-700 text-white hover:bg-gray-600'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors duration-200 ${isDarkMode
+              ? 'bg-gray-700 text-white hover:bg-gray-600'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
           >
             {isDarkMode ? '☀️' : '🌙'}
           </button>
@@ -258,9 +253,8 @@ const App = () => {
 
         {/* Large Time Display */}
         <div className="text-center mb-8 sm:mb-12 pt-16 sm:pt-20">
-          <div className={`text-lg sm:text-xl mb-2 sm:mb-4 ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-600'
-          }`}>
+          <div className={`text-lg sm:text-xl mb-2 sm:mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+            }`}>
             {new Date().toLocaleDateString('en-US', {
               weekday: 'long',
               year: 'numeric',
@@ -268,17 +262,15 @@ const App = () => {
               day: 'numeric'
             })}
           </div>
-          <div 
+          <div
             key={timeKey}
-            className={`text-6xl sm:text-8xl md:text-9xl font-light mb-2 font-mono leading-none fade-in ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
-            }`}
+            className={`text-6xl sm:text-8xl md:text-9xl font-light mb-2 font-mono leading-none fade-in ${isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}
           >
             {currentTime}
           </div>
-          <div className={`text-sm sm:text-lg ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-500'
-          }`}>
+          <div className={`text-sm sm:text-lg ${isDarkMode ? 'text-gray-400' : 'text-gray-500'
+            }`}>
             UTC: {currentUtcTime}
           </div>
         </div>
@@ -286,12 +278,10 @@ const App = () => {
         {/* Main content */}
         <div className="space-y-6 sm:space-y-8">
           {/* Locations section */}
-          <div className={`rounded-lg p-4 sm:p-6 ${
-            isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
-          }`}>
-            <h2 className={`text-lg sm:text-xl font-medium mb-3 sm:mb-4 ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
+          <div className={`rounded-lg p-4 sm:p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'
             }`}>
+            <h2 className={`text-lg sm:text-xl font-medium mb-3 sm:mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'
+              }`}>
               Cities at 5:00 PM ({fivePmLocations.length})
             </h2>
             {fivePmLocations.length > 0 ? (
@@ -299,20 +289,18 @@ const App = () => {
                 {fivePmLocations.map((location, index) => (
                   <div
                     key={index}
-                    className={`rounded border px-3 sm:px-4 py-2 sm:py-3 font-medium text-sm sm:text-base transition-colors duration-200 ${
-                      isDarkMode
-                        ? 'bg-gray-700 border-gray-600 text-white'
-                        : 'bg-white border-gray-200 text-gray-900'
-                    }`}
+                    className={`rounded border px-3 sm:px-4 py-2 sm:py-3 font-medium text-sm sm:text-base transition-colors duration-200 ${isDarkMode
+                      ? 'bg-gray-700 border-gray-600 text-white'
+                      : 'bg-white border-gray-200 text-gray-900'
+                      }`}
                   >
                     {location}
                   </div>
                 ))}
               </div>
             ) : (
-              <p className={`text-sm sm:text-base ${
-                isDarkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
+              <p className={`text-sm sm:text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
                 No major cities are at 5:00 PM right now.
               </p>
             )}
@@ -320,9 +308,8 @@ const App = () => {
         </div>
 
         {/* Footer */}
-        <div className={`mt-8 sm:mt-12 text-center text-xs sm:text-sm ${
-          isDarkMode ? 'text-gray-400' : 'text-gray-500'
-        }`}>
+        <div className={`mt-8 sm:mt-12 text-center text-xs sm:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'
+          }`}>
           Made by{' '}
           <a
             href="https://vedantmodi.com"
@@ -332,6 +319,14 @@ const App = () => {
           >
             Vedant Modi
           </a>
+          <br />
+          <a
+            onClick={() => setShowPopup(true)}
+            className={isDarkMode ? 'underline text-blue-400 hover:text-blue-300' : 'underline text-blue-600 hover:text-blue-800'}
+          >
+            Learn more.
+          </a>
+
         </div>
       </div>
     </div>
